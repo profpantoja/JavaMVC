@@ -18,22 +18,18 @@ public class TelaConsultaItem extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelConsultaItem = new javax.swing.JPanel();
-        jLabelTitulo = new javax.swing.JLabel();
         jLabelTituloFilme = new javax.swing.JLabel();
         jTextFieldTituloFilme = new javax.swing.JTextField();
         javax.swing.JButton jButtonConsultarItem = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableConsultarItem = new javax.swing.JTable();
+        jLabelTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Video Locadora Hora da Pipoca");
         setAlwaysOnTop(true);
 
         jPanelConsultaItem.setBackground(new java.awt.Color(102, 102, 102));
-
-        jLabelTitulo.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icon.png"))); // NOI18N
-        jLabelTitulo.setText("Consulta de Item");
 
         jLabelTituloFilme.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabelTituloFilme.setForeground(new java.awt.Color(255, 255, 255));
@@ -46,10 +42,7 @@ public class TelaConsultaItem extends javax.swing.JFrame {
         jTableConsultarItem.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTableConsultarItem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Código Item", "Código Filme", "Título", "Tipo", "Preço"
@@ -77,54 +70,56 @@ public class TelaConsultaItem extends javax.swing.JFrame {
         jPanelConsultaItemLayout.setHorizontalGroup(
             jPanelConsultaItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelConsultaItemLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
                 .addGroup(jPanelConsultaItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelConsultaItemLayout.createSequentialGroup()
-                        .addGap(268, 268, 268)
-                        .addComponent(jLabelTitulo))
-                    .addGroup(jPanelConsultaItemLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanelConsultaItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelConsultaItemLayout.createSequentialGroup()
-                                .addComponent(jLabelTituloFilme)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldTituloFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonConsultarItem, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(45, Short.MAX_VALUE))
+                        .addComponent(jLabelTituloFilme)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldTituloFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonConsultarItem, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanelConsultaItemLayout.setVerticalGroup(
             jPanelConsultaItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelConsultaItemLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(35, 35, 35)
                 .addGroup(jPanelConsultaItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButtonConsultarItem, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelConsultaItemLayout.createSequentialGroup()
-                        .addComponent(jLabelTitulo)
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanelConsultaItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelTituloFilme)
-                            .addComponent(jTextFieldTituloFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabelTituloFilme)
+                    .addComponent(jTextFieldTituloFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
+
+        jLabelTitulo.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icon.png"))); // NOI18N
+        jLabelTitulo.setText("Consulta de Item");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jPanelConsultaItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jPanelConsultaItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(295, 295, 295)
+                        .addComponent(jLabelTitulo)))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addContainerGap()
+                .addComponent(jLabelTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelConsultaItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
