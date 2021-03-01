@@ -3,13 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package locadora.view;
-
-/**
- *
- * 
- */
 
 public class TelaConsultaItem extends javax.swing.JFrame {
 
