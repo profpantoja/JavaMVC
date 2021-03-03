@@ -5,6 +5,7 @@
  */
 package locadora.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import locadora.dao.ExceptionDAO;
 import locadora.dao.ItemDAO;
@@ -91,7 +92,11 @@ public class Item {
         this.cliente = cliente;
     }
 
-    public void cadastrarItem(Item item)throws ExceptionDAO {
+    public void cadastrarItem(Item item) throws ExceptionDAO {
         new ItemDAO().cadastrarItem(item);
+    }
+
+    public ArrayList<Item> listarItens(String título) throws ExceptionDAO {
+        return new ItemDAO().listarItem(título);
     }
 }

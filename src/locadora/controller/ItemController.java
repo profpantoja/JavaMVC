@@ -5,6 +5,7 @@
  */
 package locadora.controller;
 
+import java.util.ArrayList;
 import locadora.dao.ExceptionDAO;
 import locadora.model.Item;
 
@@ -23,5 +24,9 @@ public class ItemController {
             return false;
         }
     } 
+    
+    public ArrayList<Item> listarItens(String título) throws ExceptionDAO {
+        return new Item().listarItens(título);
+    }
     
 }

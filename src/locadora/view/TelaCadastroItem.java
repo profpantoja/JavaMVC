@@ -12,6 +12,7 @@ import locadora.controller.ItemController;
 public class TelaCadastroItem extends javax.swing.JFrame {
 
     private Integer codFilme = 0;
+    private Integer codItem = 0;
     private TelaPrincipal telaPrincipal;
     
     /**
@@ -31,6 +32,17 @@ public class TelaCadastroItem extends javax.swing.JFrame {
     public void buscarFilme(Integer codFilme, String titulo) {
         this.codFilme = codFilme;
         this.jTextFieldTituloFilme.setText(titulo);
+    }
+    
+    public void buscarItem(Integer codItem, Integer codFilme, String título, String tipo, String preço) {
+        this.codItem = codItem;
+        this.codFilme = codFilme;
+        this.jTextFieldTituloFilme.setText(título);
+        for(int contador=0;contador<jComboBoxTipo.getItemCount();contador++) {
+            if(jComboBoxTipo.getItemAt(contador).equals(tipo))
+                jComboBoxTipo.setSelectedIndex(contador);
+        }
+        this.jTextFieldPreco.setText(preço);        
     }
     
     /**
@@ -126,6 +138,11 @@ public class TelaCadastroItem extends javax.swing.JFrame {
 
         jButtonConsultarItem.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jButtonConsultarItem.setText("Consultar");
+        jButtonConsultarItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultarItemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelCadastroItemLayout = new javax.swing.GroupLayout(jPanelCadastroItem);
         jPanelCadastroItem.setLayout(jPanelCadastroItemLayout);
@@ -257,6 +274,12 @@ public class TelaCadastroItem extends javax.swing.JFrame {
         telaConsultaFilme.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonConsultarFilmeActionPerformed
+
+    private void jButtonConsultarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarItemActionPerformed
+        TelaConsultaItem telaConsultaItem = new TelaConsultaItem((JFrame) this);
+        telaConsultaItem.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonConsultarItemActionPerformed
 
     /**
      * @param args the command line arguments

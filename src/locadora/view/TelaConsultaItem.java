@@ -5,14 +5,28 @@
  */
 package locadora.view;
 
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+import locadora.controller.ItemController;
+import locadora.dao.ExceptionDAO;
+import locadora.model.Item;
+
 public class TelaConsultaItem extends javax.swing.JFrame {
 
-   
+    private JFrame telaCadastro;
+    
     public TelaConsultaItem() {
         initComponents();
     }
 
-   
+    public TelaConsultaItem (JFrame telaCadastroItem) {
+        this.telaCadastro = telaCadastroItem;
+        initComponents();
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -28,6 +42,11 @@ public class TelaConsultaItem extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Video Locadora Hora da Pipoca");
         setAlwaysOnTop(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanelConsultaItem.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -38,6 +57,11 @@ public class TelaConsultaItem extends javax.swing.JFrame {
         jTextFieldTituloFilme.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
 
         jButtonConsultarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa.png"))); // NOI18N
+        jButtonConsultarItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultarItemActionPerformed(evt);
+            }
+        });
 
         jTableConsultarItem.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTableConsultarItem.setModel(new javax.swing.table.DefaultTableModel(
@@ -61,6 +85,11 @@ public class TelaConsultaItem extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTableConsultarItem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableConsultarItemMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTableConsultarItem);
@@ -124,6 +153,48 @@ public class TelaConsultaItem extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        this.dispose();
+        this.telaCadastro.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
+
+    private void jButtonConsultarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarItemActionPerformed
+        String título = jTextFieldTituloFilme.getText();
+        DefaultTableModel tableModel = (DefaultTableModel) jTableConsultarItem.getModel();
+        tableModel.setRowCount(0);
+        ItemController itemController = new ItemController();        
+        try {
+            ArrayList<Item> itens = itemController.listarItens(título);
+            itens.forEach((Item item) -> {
+                tableModel.addRow(new Object[] {
+                    item.getCodItem(),
+                    item.getFilme().getCodFilme(),
+                    item.getFilme().getTitulo(),
+                    item.getTipo(),
+                    item.getPreço()
+                });
+            });
+            jTableConsultarItem.setModel(tableModel);
+            
+        } catch (ExceptionDAO ex) {
+            Logger.getLogger(TelaConsultaItem.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+    }//GEN-LAST:event_jButtonConsultarItemActionPerformed
+
+    private void jTableConsultarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableConsultarItemMouseClicked
+        if(evt.getClickCount()==2) {
+            Integer codItem = (Integer) jTableConsultarItem.getModel().getValueAt(jTableConsultarItem.getSelectedRow(),0);
+            Integer codFilme = (Integer) jTableConsultarItem.getModel().getValueAt(jTableConsultarItem.getSelectedRow(),1);
+            String título = (String) jTableConsultarItem.getModel().getValueAt(jTableConsultarItem.getSelectedRow(),2);
+            String tipo = (String) jTableConsultarItem.getModel().getValueAt(jTableConsultarItem.getSelectedRow(),3);
+            String preço = String.valueOf(jTableConsultarItem.getModel().getValueAt(jTableConsultarItem.getSelectedRow(),4));
+            TelaCadastroItem telaCadastroItem = (TelaCadastroItem) this.telaCadastro; 
+            telaCadastroItem.buscarItem(codItem, codFilme, título, tipo, preço);
+            telaCadastroItem.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jTableConsultarItemMouseClicked
 
     /**
      * @param args the command line arguments
