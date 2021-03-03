@@ -25,8 +25,7 @@ public class TelaCadastroItem extends javax.swing.JFrame {
     }
     
     public TelaCadastroItem() {
-        initComponents();
-        
+        initComponents();        
     }
 
     public void buscarFilme(Integer codFilme, String titulo) {
@@ -42,7 +41,7 @@ public class TelaCadastroItem extends javax.swing.JFrame {
             if(jComboBoxTipo.getItemAt(contador).equals(tipo))
                 jComboBoxTipo.setSelectedIndex(contador);
         }
-        this.jTextFieldPreco.setText(preço);        
+        this.jTextFieldPreco.setText(preço);
     }
     
     /**
