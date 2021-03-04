@@ -162,7 +162,24 @@ public class TelaConsultaItem extends javax.swing.JFrame {
     private void jButtonConsultarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarItemActionPerformed
         String título = jTextFieldTituloFilme.getText();
         DefaultTableModel tableModel = (DefaultTableModel) jTableConsultarItem.getModel();
-            
+        tableModel.setRowCount(0);
+        ItemController itemController = new ItemController();     
+        try {
+            ArrayList<Item> itens = itemController.listarItens(título);
+            itens.forEach((Item item) -> {
+                tableModel.addRow(new Object[] {
+                    item.getCodItem(),
+                    item.getFilme().getCodFilme(),
+                    item.getFilme().getTitulo(),
+                    item.getTipo(),
+                    item.getPreço()
+                });
+            });
+            jTableConsultarItem.setModel(tableModel);
+        } catch (ExceptionDAO ex) {
+            Logger.getLogger(TelaConsultaItem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButtonConsultarItemActionPerformed
 
     private void jTableConsultarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableConsultarItemMouseClicked

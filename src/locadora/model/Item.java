@@ -6,7 +6,6 @@ import locadora.dao.ExceptionDAO;
 import locadora.dao.ItemDAO;
 
 /**
- *
  * @author Pantoja
  */
 public class Item {

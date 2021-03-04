@@ -9,7 +9,6 @@ import locadora.model.Filme;
 import locadora.model.Item;
 
 /**
- *
  * @author Pantoja
  */
 public class ItemDAO {

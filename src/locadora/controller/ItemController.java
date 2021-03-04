@@ -5,7 +5,6 @@ import locadora.dao.ExceptionDAO;
 import locadora.model.Item;
 
 /**
- *
  * @author Pantoja
  */
 public class ItemController {
