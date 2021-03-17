@@ -242,10 +242,15 @@ public class TelaCadastroItem extends javax.swing.JFrame {
             preço = Double.parseDouble(jTextFieldPreco.getText());
         else
             preço = 0;
-        boolean sucesso = false;
+        boolean sucesso;
         try {
-            ItemController itemController = new ItemController();
-            sucesso = itemController.cadastrarItem(this.codFilme, tipo, preço);
+            ItemController itemController = new ItemController();           
+            if (this.codItem == 0) 
+                sucesso = itemController.cadastrarItem(this.codFilme, tipo, preço);
+            else {
+                sucesso = itemController.alterarItem(this.codItem, this.codFilme, tipo, preço);
+                this.codItem = 0;
+            }
             if (sucesso) {
                 JOptionPane.showMessageDialog(null, "O item foi cadastrado com sucesso!");
                 this.limparTelaCadastroItem(evt);

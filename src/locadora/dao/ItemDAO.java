@@ -86,5 +86,34 @@ public class ItemDAO {
         }
         return itens;
     }
-    
+ 
+        public void alterarItem(Item item) throws ExceptionDAO {        
+        String sql = "update Item set codFilme = ?, preço = ?, tipo = ? where codItem = ?";
+        PreparedStatement pStatement = null;
+        Connection connection = null;
+        
+        try {
+            connection = new ConnectionMVC().getConnection();
+            pStatement = connection.prepareStatement(sql);
+            pStatement.setInt(1, item.getFilme().getCodFilme());
+            pStatement.setDouble(2, item.getPreço());
+            pStatement.setString(3, item.getTipo());
+            pStatement.setInt(4, item.getCodItem());
+            pStatement.execute();
+        } catch (SQLException e) {
+            throw new ExceptionDAO ("Erro ao alterar Item: " + e);
+        } finally {
+            try {
+                if (pStatement != null) {pStatement.close();}
+            } catch (SQLException e) {
+                throw new ExceptionDAO("Erro ao fechar o Statement: " + e);
+            }
+            
+            try {
+                if (connection != null) {connection.close();}
+            } catch (SQLException e) {
+                throw new ExceptionDAO("Erro ao fechar a conexão: " + e);                
+            }
+        }
+    } 
 }
