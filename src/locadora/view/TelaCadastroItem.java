@@ -5,9 +5,12 @@
  */
 package locadora.view;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import locadora.controller.ItemController;
+import locadora.dao.ExceptionDAO;
 
 public class TelaCadastroItem extends javax.swing.JFrame {
 
@@ -66,6 +69,7 @@ public class TelaCadastroItem extends javax.swing.JFrame {
         jButtonLimpar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jButtonConsultarItem = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Vídeo Locadora Hora da Pipoca");
@@ -143,6 +147,15 @@ public class TelaCadastroItem extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jButton1.setText("Apagar");
+        jButton1.setName("jTextApagar"); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelCadastroItemLayout = new javax.swing.GroupLayout(jPanelCadastroItem);
         jPanelCadastroItem.setLayout(jPanelCadastroItemLayout);
         jPanelCadastroItemLayout.setHorizontalGroup(
@@ -157,7 +170,9 @@ public class TelaCadastroItem extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addComponent(jButtonCancelar)
                         .addGap(36, 36, 36)
-                        .addComponent(jButtonConsultarItem))
+                        .addComponent(jButtonConsultarItem)
+                        .addGap(28, 28, 28)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelCadastroItemLayout.createSequentialGroup()
                         .addGroup(jPanelCadastroItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabelTituloFilme)
@@ -200,7 +215,8 @@ public class TelaCadastroItem extends javax.swing.JFrame {
                     .addComponent(jButtonSalvar)
                     .addComponent(jButtonLimpar)
                     .addComponent(jButtonCancelar)
-                    .addComponent(jButtonConsultarItem))
+                    .addComponent(jButtonConsultarItem)
+                    .addComponent(jButton1))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
@@ -266,6 +282,7 @@ public class TelaCadastroItem extends javax.swing.JFrame {
        jComboBoxTipo.setSelectedIndex(0);
        jTextFieldPreco.setText("");
        this.codFilme = 0;
+       this.codItem = 0;
     }//GEN-LAST:event_limparTelaCadastroItem
 
     private void cancelarCadastroItem(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarCadastroItem
@@ -284,6 +301,22 @@ public class TelaCadastroItem extends javax.swing.JFrame {
         telaConsultaItem.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonConsultarItemActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ItemController itemController = new ItemController();
+        
+        try {
+            if (itemController.apagarItem(this.codItem)) {
+                JOptionPane.showMessageDialog(null, "O item foi apagado com sucesso!");
+                this.limparTelaCadastroItem(evt);
+                this.codItem = 0;
+                this.codFilme = 0;
+            }
+                
+        } catch (ExceptionDAO ex) {
+            Logger.getLogger(TelaCadastroItem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -321,6 +354,7 @@ public class TelaCadastroItem extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonConsultarFilme;
     private javax.swing.JButton jButtonConsultarItem;

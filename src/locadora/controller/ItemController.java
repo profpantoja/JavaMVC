@@ -32,5 +32,17 @@ public class ItemController {
         } else {
             return false;
         }
-    } 
+    }
+    
+    public boolean apagarItem(int codItem) throws ExceptionDAO {
+        if (codItem == 0)
+            return false;
+        else {
+            Item item = new Item();
+            item.setCodItem(codItem);
+            item.apagarItem(item);
+            return true;
+        }
+    }
+    
 }

@@ -98,4 +98,7 @@ public class Item {
         new ItemDAO().alterarItem(item);
     }
 
+        public void apagarItem(Item item) throws ExceptionDAO {
+        new ItemDAO().apagarItem(item);
+    }
 }

@@ -278,6 +278,7 @@ public class TelaCadastroAtor extends javax.swing.JFrame {
             if(sucesso) {
                 JOptionPane.showMessageDialog(null, "O Ator foi apagado com sucesso!");
                 this.limparTela();
+                this.codAtor = 0;
             } else 
                 JOptionPane.showMessageDialog(null, "O Ator não foi apagado. Por favor, selecionar um Ator!");
         } catch (ExceptionDAO ex) {
